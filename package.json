@@ -9,7 +9,8 @@
     "deploy:viem": "ts-node --files ./scripts/DeployWithViem.ts",
     "contract:mint": "ts-node --files ./scripts/mintToken.ts",
     "contract:transfer": "ts-node --files ./scripts/transfer.ts",
-    "contract:delegate": "ts-node --files ./scripts/delegate.ts"
+    "contract:delegate": "ts-node --files ./scripts/delegate.ts",
+    "contract:voting-power": "ts-node --files ./scripts/votingPower.ts"
   },
   "author": "",
   "license": "ISC",
