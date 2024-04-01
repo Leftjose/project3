@@ -32,7 +32,7 @@ async function main() {
 
   
   const receipt = await publicClient.waitForTransactionReceipt({ hash });
-  console.log("Contract deployed at: ", receipt.contractAddress);
+  console.log("My token Contract deployed at: ", receipt.contractAddress);
 
   const blockNumber = await publicClient.getBlockNumber();
   const tokenizedBallotHash = await deployer.deployContract({
@@ -41,9 +41,10 @@ async function main() {
     args: [
       proposals.map((prop) => toHex(prop, { size: 32 })),
       receipt.contractAddress, 
-      blockNumber + 100n,
+      blockNumber,
     ],
   });
+
   const receiptTokenizedBallot = await publicClient.waitForTransactionReceipt({ hash: tokenizedBallotHash });
   console.log("TokenizedBallot deployed at: ", receiptTokenizedBallot.contractAddress);
 }

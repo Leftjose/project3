@@ -3,32 +3,28 @@ import { abi } from "../artifacts/contracts/MyToken.sol/MyToken.json";
 
 const getParameters = () => {
   const parameters = process.argv.slice(2);
-  const delegateAddress = parameters[0] as `0x${string}`;
+  const votingPowerAddress = parameters[0] as `0x${string}`;
   const contractAddress = parameters[1] as `0x${string}`;
 
   return { 
     account: getAccountClient(), 
     contractAddress,
-    delegateAddress,
+    votingPowerAddress,
     publicClient: getPublicClient("Alchemy")
   };
 }
 
 async function main() {
-  const { account, delegateAddress, contractAddress, publicClient } = getParameters();
+  const { votingPowerAddress, contractAddress, publicClient } = getParameters();
 
-  console.log('**************', {
-    delegateAddress,
-    contractAddress,
-  })
   const data = await publicClient.readContract({
     address: contractAddress,
     abi,
     functionName: "getVotes",
-    args: [delegateAddress],
+    args: [votingPowerAddress],
   })
 
-  console.log("Votes: ", data);
+  console.log("Voting power for ", votingPowerAddress, "is", data);
 }
 
 main().catch((error) => {

@@ -1,15 +1,16 @@
 import { getPublicClient, getAccountClient } from "./utils";
 import { abi } from "../artifacts/contracts/MyToken.sol/MyToken.json";
+import { parseEther } from "viem";
 
 const getParameters = () => {
   const parameters = process.argv.slice(2);
-  const proposal = parameters[0];
-  const amount = parameters[1];
+  const amount = parseEther(parameters[0]);
+  const transferTo = parameters[1];
   const contractAddress = parameters[2] as `0x${string}`;
 
   return { 
-    proposal,
-    account: getAccountClient(), 
+    account: getAccountClient(),
+    transferTo,
     amount, 
     contractAddress,
     publicClient: getPublicClient("Alchemy")
@@ -17,21 +18,19 @@ const getParameters = () => {
 }
 
 async function main() {
-  const { account, amount, contractAddress, publicClient } = getParameters();
-  console.log('**************', {
-    amount, contractAddress
-  })
+  const { account, transferTo, amount, contractAddress, publicClient } = getParameters();
+
   const hash = await account.writeContract({
     address: contractAddress,
     abi,
     functionName: "transfer",
-    args: ['0x041938D58b00f30EaB593eFC5eE951AEFb98f15D', amount],
+    args: [transferTo, amount],
   })
 
   console.log("Transaction hash: ", hash);
   console.log("Waiting for confirmations");
   await publicClient.waitForTransactionReceipt({ hash });
-  console.log("Minted ", amount, " to ", account.account.address);
+  console.log("Transfer ", amount, " to ", account.account.address);
 }
 
 main().catch((error) => {

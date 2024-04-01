@@ -1,10 +1,11 @@
 import { getPublicClient, getAccountClient } from "./utils";
 import { abi } from "../artifacts/contracts/TokenizedBallot.sol/TokenizedBallot.json";
+import { parseEther } from "viem";
 
 const getParameters = () => {
   const parameters = process.argv.slice(2);
   const proposal = parameters[0];
-  const amount = parameters[1];
+  const amount = parseEther(parameters[1]);
   const contractAddress = parameters[2] as `0x${string}`;
 
   return {
@@ -18,13 +19,9 @@ const getParameters = () => {
 
 async function main() {
   const { proposal, account, amount, contractAddress, publicClient } = getParameters();
-  console.log("**************", {
-    
-    amount,
-    contractAddress,
-  });
+
+  console.log(amount, " votes for proposal ", proposal)
   const hash = await account.writeContract({
-    
     address: contractAddress,
     abi,
     functionName: "vote",
@@ -34,7 +31,7 @@ async function main() {
   console.log("Transaction hash: ", hash);
   console.log("Waiting for confirmations");
   await publicClient.waitForTransactionReceipt({ hash });
-  console.log("Minted ", amount, " to ", account.account.address);
+  console.log(account.account.address, "Voting with ", amount, " to ", proposal);
 }
 
 main().catch((error) => {

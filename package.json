@@ -6,11 +6,14 @@
   "scripts": {
     "compile": "hardhat compile",
     "test": "hardhat test",
-    "deploy:viem": "ts-node --files ./scripts/DeployWithViem.ts",
+    "deploy:mytoken": "ts-node --files ./scripts/deployMyToken.ts",
+    "deploy:tokenizedBallot": "ts-node --files ./scripts/deployTokenizedBallot.ts",
     "contract:mint": "ts-node --files ./scripts/mintToken.ts",
     "contract:transfer": "ts-node --files ./scripts/transfer.ts",
     "contract:delegate": "ts-node --files ./scripts/delegate.ts",
-    "contract:voting-power": "ts-node --files ./scripts/votingPower.ts"
+    "contract:voting-power": "ts-node --files ./scripts/votingPower.ts",
+    "contract:casting-vote": "ts-node --files ./scripts/castingVote.ts",
+    "contract:winner": "ts-node --files ./scripts/queryWinner.ts"
   },
   "author": "",
   "license": "ISC",

@@ -1,11 +1,11 @@
 import { getPublicClient, getAccountClient } from "./utils";
 import { abi } from "../artifacts/contracts/MyToken.sol/MyToken.json";
+import { parseEther } from 'viem';
 
 const getParameters = () => {
   const parameters = process.argv.slice(2);
-  const address = parameters[0] as `0x${string}`;
-  const amount = parameters[1];
-  const contractAddress = parameters[2] as `0x${string}`;
+  const amount = parameters[0];
+  const contractAddress = parameters[1] as `0x${string}`;
 
   return { 
     account: getAccountClient(), 
@@ -19,10 +19,10 @@ async function main() {
   const { account, amount, contractAddress, publicClient } = getParameters();
 
   const hash = await account.writeContract({
-    address: '0xcc003CE7C1a5A5FCD3B54617eDb508CC45DEA499',
+    address: contractAddress,
     abi,
     functionName: "mint",
-    args: [account.account.address, amount],
+    args: [account.account.address, parseEther(amount)],
   })
 
   console.log("Transaction hash: ", hash);
