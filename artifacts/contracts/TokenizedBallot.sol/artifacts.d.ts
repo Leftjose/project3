@@ -5,16 +5,13 @@
 
 import "hardhat/types/artifacts";
 
-import { Ballot$Type } from "./Ballot";
 import { IMyToken$Type } from "./IMyToken";
 import { TokenizedBallot$Type } from "./TokenizedBallot";
 
 declare module "hardhat/types/artifacts" {
   interface ArtifactsMap {
-    ["Ballot"]: Ballot$Type;
     ["IMyToken"]: IMyToken$Type;
     ["TokenizedBallot"]: TokenizedBallot$Type;
-    ["contracts/TokenizedBallot.sol:Ballot"]: Ballot$Type;
     ["contracts/TokenizedBallot.sol:IMyToken"]: IMyToken$Type;
     ["contracts/TokenizedBallot.sol:TokenizedBallot"]: TokenizedBallot$Type;
   }

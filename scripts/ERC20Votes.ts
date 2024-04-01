@@ -10,6 +10,7 @@ async function main() {
   console.log(`Token contract deployed at ${contract.address}\n`);
   const mintTx = await contract.write.mint([acc1.account.address, MINT_VALUE]);
   await publicClient.waitForTransactionReceipt({ hash: mintTx });
+
   console.log(
     `Minted ${formatEther(MINT_VALUE)} decimal units to account ${
       acc1.account.address

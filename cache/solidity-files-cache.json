@@ -1140,8 +1140,8 @@
       ]
     },
     "/Users/mike/Github/Solidity Bootcamp/project3/contracts/TokenizedBallot.sol": {
-      "lastModificationDate": 1711931405734,
-      "contentHash": "3bd11a8e04ad483ce96575982782dfc5",
+      "lastModificationDate": 1711932919988,
+      "contentHash": "00c18677f05f759c0ae4f93f648bd826",
       "sourceName": "contracts/TokenizedBallot.sol",
       "solcConfig": {
         "version": "0.8.24",
@@ -1172,7 +1172,6 @@
         ">=0.7.0 <0.9.0"
       ],
       "artifacts": [
-        "Ballot",
         "IMyToken",
         "TokenizedBallot"
       ]
