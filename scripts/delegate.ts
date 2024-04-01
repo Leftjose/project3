@@ -4,7 +4,7 @@ import { abi } from "../artifacts/contracts/MyToken.sol/MyToken.json";
 const getParameters = () => {
   const parameters = process.argv.slice(2);
   const delegateAddress = parameters[0] as `0x${string}`;
-  const contractAddress = parameters[2] as `0x${string}`;
+  const contractAddress = parameters[1] as `0x${string}`;
 
   return { 
     account: getAccountClient(), 
@@ -18,7 +18,8 @@ async function main() {
   const { account, delegateAddress, contractAddress, publicClient } = getParameters();
 
   console.log('**************', {
-    delegateAddress
+    delegateAddress,
+    contractAddress,
   })
   const hash = await account.writeContract({
     address: contractAddress,
