@@ -39,8 +39,8 @@ async function main() {
     abi: abiTokenizedBallot,
     bytecode: bytecodeTokenizedBallot as `0x${string}`,
     args: [
-      receipt.contractAddress, 
       proposals.map((prop) => toHex(prop, { size: 32 })),
+      receipt.contractAddress, 
       blockNumber + 100n,
     ],
   });
