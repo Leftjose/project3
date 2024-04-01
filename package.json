@@ -7,7 +7,9 @@
     "compile": "hardhat compile",
     "test": "hardhat test",
     "deploy:viem": "ts-node --files ./scripts/DeployWithViem.ts",
-    "contract:mint": "ts-node --files ./scripts/mintToken.ts"
+    "contract:mint": "ts-node --files ./scripts/mintToken.ts",
+    "contract:transfer": "ts-node --files ./scripts/transfer.ts",
+    "contract:delegate": "ts-node --files ./scripts/delegate.ts"
   },
   "author": "",
   "license": "ISC",

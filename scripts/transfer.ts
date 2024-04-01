@@ -17,12 +17,14 @@ const getParameters = () => {
 
 async function main() {
   const { account, amount, contractAddress, publicClient } = getParameters();
-
+  console.log('**************', {
+    amount, contractAddress
+  })
   const hash = await account.writeContract({
-    address: '0xcc003CE7C1a5A5FCD3B54617eDb508CC45DEA499',
+    address: contractAddress,
     abi,
-    functionName: "mint",
-    args: [account.account.address, amount],
+    functionName: "transfer",
+    args: ['0x041938D58b00f30EaB593eFC5eE951AEFb98f15D', amount],
   })
 
   console.log("Transaction hash: ", hash);
